@@ -1,0 +1,18 @@
+{
+  "name": "magic-hat-deck",
+  "type": "static",
+  "alias": "magic-hat-deck",
+  "build": {
+    "env": {
+      "CI": "true"
+    }
+  },
+  "static": {
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
