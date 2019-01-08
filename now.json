@@ -1,7 +1,7 @@
 {
-  "name": "magic-hat-deck",
+  "name": "future-react-deck",
   "type": "static",
-  "alias": "magic-hat-deck",
+  "alias": "future-react-deck",
   "build": {
     "env": {
       "CI": "true"
