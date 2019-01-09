@@ -17,13 +17,17 @@ import "style.css";
 
 # Future React
 
+## Improving Experience
+
 ---
 
 <Title2Left>User Experience</Title2Left>
 
-- React.lazy()
+- React.lazy
 - Suspense
 - Concurrent Mode
+
+<Notes />
 
 ---
 
@@ -41,6 +45,27 @@ import "style.css";
 # Context API
 
 ## A way to pass data through the component tree
+
+---
+
+<Appear alt showFirst>
+  <div>
+    <h2>
+      Context is designed to share data that can be considered{" "}
+      <span style={{ color: "yellow" }}>global</span> for a tree of React
+      components.
+    </h2>
+    Eg user data, theme, or preferred language.
+  </div>
+  <div>
+    <h2>
+      Context is primarily used when some data needs to be accessible by{" "}
+      <span style={{ color: "yellow" }}>many</span> components at different
+      nesting levels.
+    </h2>
+  </div>
+
+</Appear>
 
 ---
 
@@ -69,28 +94,15 @@ import "style.css";
 
 ---
 
-<Appear alt showFirst>
-  <div>
-    <h2>
-      Context is designed to share data that can be considered{" "}
-      <span style={{ color: "yellow" }}>global</span> for a tree of React
-      components.
-    </h2>
-    Eg user data, theme, or preferred language.
-  </div>
-  <div>
-    <h2>
-      Context is primarily used when some data needs to be accessible by{" "}
-      <span style={{ color: "yellow" }}>many</span> components at different
-      nesting levels.
-    </h2>
-  </div>
+<Appear showFirst>
   <div>
     <h2>Apply it sparingly</h2>
     <h3>It makes component reuse more difficult.</h3>
-    If you only want to avoid passing some props through many levels,{" "}
-    <span style={{ color: "yellow" }}>component composition</span> is often a
-    simpler solution than context.
+    <div>
+      If you only want to avoid passing some props through many levels,{" "}
+      <span style={{ color: "yellow" }}>component composition</span> is often a
+      simpler solution than context.
+    </div>
   </div>
 </Appear>
 
@@ -159,7 +171,7 @@ function ExampleApplication() {
 
 <Appear alt showFirst>
   <h2>Still experimental.</h2>
-  <h2>Important part of a React Fiber rewrite.</h2>
+  <h2>An important part of the React Fiber rewrite.</h2>
   <h2>
     It gives React the ability to schedule updates at different priorities.
   </h2>
@@ -167,7 +179,7 @@ function ExampleApplication() {
 <div>
   <img style={{ width: "160px" }} src="images/flux.png" />
   <h2>
-    This is as essential as the Flux Capacitor, it makes time travel possible.
+    This is as essential as the Flux Capacitor in a DeLorean, it makes time travel possible.
   </h2>
 </div>
   <h2>React team is working with Chrome team to standardize scheduling.</h2>
@@ -258,7 +270,7 @@ function MyComponent() {
 
 ---
 
-<blockquote class="twitter-tweet" data-lang="en-gb">
+<blockquote className="twitter-tweet" data-lang="en-gb">
   <p lang="en" dir="ltr">
     Suspense is a fundamentally new capability that lets you render a component
     tree “in background” while components are fetching data, and display them
@@ -383,10 +395,21 @@ function useWindowWidth() {
   <h2>
     This is known as <span style={{ color: "yellow" }}>Time Slicing</span>.
   </h2>
-<div>
-    <blockquote class="twitter-tweet" data-conversation="none" data-lang="en-gb"><p lang="en" dir="ltr">Time slicing lets you render and update large React component trees without blocking the user interactions. It is a perceived performance optimization that becomes more relevant as your app adds features and its UI becomes more ambitious.</p>&mdash; Dan Abramov (@dan_abramov)</blockquote>
-    </div>
-
+  <div>
+    <blockquote
+      className="twitter-tweet"
+      data-conversation="none"
+      data-lang="en-gb"
+    >
+      <p lang="en" dir="ltr">
+        Time slicing lets you render and update large React component trees
+        without blocking the user interactions. It is a perceived performance
+        optimization that becomes more relevant as your app adds features and
+        its UI becomes more ambitious.
+      </p>
+      &mdash; Dan Abramov (@dan_abramov)
+    </blockquote>
+  </div>
 </Appear>
 
 ---
@@ -526,3 +549,7 @@ function Item(props){
 - Make classes kinda obsolete
 - Pendulum swing back to SSR with Suspense
 - More framework-y with code splitting APIs (React.lazy)
+
+---
+
+# Thank you.
