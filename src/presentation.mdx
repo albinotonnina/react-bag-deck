@@ -6,7 +6,8 @@ import {
   Title2Left,
   FlexItem,
   FlexContainer,
-  Scroller
+  Scroller,
+  ReactVersion
 } from "./components";
 import "style.css";
 
@@ -14,17 +15,7 @@ import "style.css";
   <title>--</title>
 </Head>
 
-# New React
-
----
-
-## The longer term vision...
-
-- Replace componentDidMount, componentDidUpdate, and componentWillUnmount with Hooks
-- Every component import is dynamic
-- Make classes kinda obsolete
-- Pendulum swing back to SSR with Suspense
-- More framework-y with code splitting APIs (React.lazy)
+# Future React
 
 ---
 
@@ -45,24 +36,35 @@ import "style.css";
 
 ---
 
-### react@16.3
+<ReactVersion>react@16.3</ReactVersion>
 
 # Context API
 
 ## A way to pass data through the component tree
 
-<Appear alt>
-  <Code className="language-javascript">
-    const MyContext = React.createContext(defaultValue);
-  </Code>
-  <Code className="language-jsx">
-    {`<MyContext.Provider value={/* some value */}>`}
-  </Code>
-  <Code className="language-jsx">
-    {`<MyContext.Consumer>
+---
+
+<Appear alt showFirst>
+  <div>
+    <h2>Create a Context</h2>
+    <Code className="language-javascript">
+      const MyContext = React.createContext(defaultValue);
+    </Code>
+  </div>
+  <div>
+    <h2>Use a Provider Component to propagate Context</h2>
+    <Code className="language-jsx">
+      {`<MyContext.Provider value={/* some value */}>`}
+    </Code>
+  </div>
+  <div>
+    <h2>Consume Context (render-props)</h2>
+    <Code className="language-jsx">
+      {`<MyContext.Consumer>
   {value => /* render something based on the context value */}
 </MyContext.Consumer>`}
-  </Code>
+    </Code>
+  </div>
 </Appear>
 
 ---
@@ -70,8 +72,9 @@ import "style.css";
 <Appear alt showFirst>
   <div>
     <h2>
-      Context is designed to share data that can be considered “global” for a
-      tree of React components.
+      Context is designed to share data that can be considered{" "}
+      <span style={{ color: "yellow" }}>global</span> for a tree of React
+      components.
     </h2>
     Eg user data, theme, or preferred language.
   </div>
@@ -81,27 +84,25 @@ import "style.css";
       <span style={{ color: "yellow" }}>many</span> components at different
       nesting levels.
     </h2>
-    Apply it sparingly because it makes component reuse more difficult.
   </div>
   <div>
-    <h2>
-      If you only want to avoid passing some props through many levels,
-      <span style={{ color: "yellow" }}>component composition</span> is often a simpler
-      solution than context.
-    </h2>
+    <h2>Apply it sparingly</h2>
+    <h3>It makes component reuse more difficult.</h3>
+    If you only want to avoid passing some props through many levels,{" "}
+    <span style={{ color: "yellow" }}>component composition</span> is often a
+    simpler solution than context.
   </div>
 </Appear>
 
 ---
 
-### react@16.3
+<ReactVersion>react@16.3</ReactVersion>
 
 # React Strict Mode
 
-## Prepare your code for Concurrent Mode
+## Prepare your code for Concurrent Rendering
+
 ---
-
-
 
 ```jsx
 import React from "react";
@@ -124,42 +125,66 @@ function ExampleApplication() {
 
 ---
 
-what it check for
+## It helps with:
 
+<ul>
+  <Appear>
+    <li>
+      <h3>Identifying components with unsafe lifecycles</h3>
+    </li>
+    <li>
+      <h3>Warning about legacy string ref API usage</h3>
+    </li>
+    <li>
+      <h3>Warning about deprecated findDOMNode usage</h3>
+    </li>
+    <li>
+      <h3>Detecting unexpected side effects</h3>
+    </li>
+    <li>
+      <h3>Detecting legacy context API</h3>
+    </li>
+  </Appear>
+</ul>
 
 ---
 
-### react@16.5
+<ReactVersion>react@16.5</ReactVersion>
 
-# Scheduler (experimental)
+# New Scheduler
 
 ## Priority queue scheduling system for React
 
 ---
 
-<Image size="50%" src="images/scheduler.png" />
-
----
-
 <Appear alt showFirst>
-  <p>
-    An important feature of async rendering in React is the ability to schedule
-    updates at different priorities. It's a bit difficult to explain all the
-    nuances succinctly, but here's my attempt to squeeze this into two images:
-  </p>
-  <p>React team is working with Chrome team to standardize scheduling.</p>
+  <h2>Still experimental.</h2>
+  <h2>Important part of a React Fiber rewrite.</h2>
+  <h2>
+    It gives React the ability to schedule updates at different priorities.
+  </h2>
+
+<div>
+  <img style={{ width: "160px" }} src="images/flux.png" />
+  <h2>
+    This is as essential as the Flux Capacitor, it makes time travel possible.
+  </h2>
+</div>
+  <h2>React team is working with Chrome team to standardize scheduling.</h2>
+<h2>More on this later.</h2>
+
 </Appear>
 
 ---
 
-### react@16.5
+<ReactVersion>react@16.5</ReactVersion>
 
 # Profiler
 
----
+## A browser devtool for profiling duration of React component commit to the DOM.
 
-A browser devtool for profiling duration of React component commit to the DOM.
-
+<Notes>
+  
 You can still see the wall time (elapsed real time) but it’s more about duration spent on a component.
 
 You can still profile using browser’s built-in profiler but with React’s Time Slicing and Error Boundaries, it’s hard to stitch together the time React spent on a “component”.
@@ -168,15 +193,17 @@ The profiler aims to provide an easier view on component’s commit time.
 
 Basing the profiler on “commit” helps you focus on performance of React components you created, not that of React core or the browser.
 
+</Notes>
+
 ---
 
 <Image size="50%" src="images/profiler.png" />
 
 ---
 
-### react@16.6
+<ReactVersion>react@16.6</ReactVersion>
 
-# React.lazy()
+# React.lazy() with Suspense
 
 ## render a dynamic import as a regular component.
 
@@ -231,7 +258,19 @@ function MyComponent() {
 
 ---
 
-### react@next
+<blockquote class="twitter-tweet" data-lang="en-gb">
+  <p lang="en" dir="ltr">
+    Suspense is a fundamentally new capability that lets you render a component
+    tree “in background” while components are fetching data, and display them
+    only after the whole tree is ready. For slow connections, it gives you full
+    control over where and when to show a placeholder.
+  </p>
+  &mdash; Dan Abramov (@dan_abramov){" "}
+</blockquote>
+
+---
+
+<ReactVersion>react@next</ReactVersion>
 
 # Hooks
 
@@ -257,7 +296,7 @@ function Example() {
 
 ---
 
-### Hooks let you always use functions instead of having to constantly switch between functions, classes, higher-order components, and render props.
+### Hooks let you always use functions instead of having to constantly switch between functions, classes, higher-order components and render props.
 
 ---
 
@@ -290,6 +329,15 @@ function useWindowWidth() {
 
 ---
 
+### Using hooks results in a simpler API & smaller/readable code base.
+
+<video width="35%" height="50%" controls>
+  <source src="images/hooks.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+---
+
 <FlexContainer>
   <FlexItem>
     <Title2Left>Basic Hooks</Title2Left>
@@ -317,48 +365,39 @@ function useWindowWidth() {
 
 ---
 
-### Using hooks results in a simpler API & smaller/readable code base.
-
-<video width="35%" height="50%" controls>
-  <source src="images/hooks.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
-
----
-
-### react@16.x Q2-2019
+<ReactVersion>react@16.x Q2-2019</ReactVersion>
 
 # Concurrent Mode
 
-## Smooth high performance UX.
----
-
-Thanks to the Fiber architecture, React renders parts of the tree while code and data for other parts is *still loading*, and then continue as they arrive.
+## Smooth, high-performance UX.
 
 ---
 
 <Appear alt showFirst>
-  <Image size="50%" src="images/scheduler_1.jpg" />
-
   <Image size="50%" src="images/scheduler_2.jpg" />
+  <Image size="50%" src="images/scheduler_1.jpg" />
+</Appear>
+---
+
+<Appear alt showFirst>
+  <h2>
+    This is known as <span style={{ color: "yellow" }}>Time Slicing</span>.
+  </h2>
+<div>
+    <blockquote class="twitter-tweet" data-conversation="none" data-lang="en-gb"><p lang="en" dir="ltr">Time slicing lets you render and update large React component trees without blocking the user interactions. It is a perceived performance optimization that becomes more relevant as your app adds features and its UI becomes more ambitious.</p>&mdash; Dan Abramov (@dan_abramov)</blockquote>
+    </div>
+
 </Appear>
 
+---
+
+## Concurrent mode is testable
+
+### You will be able to test it just like synchronous code
 
 ---
 
-Time Slicing
-
----
-
-# Concurrent mode is testable
-
-## You will be able to test just like a synchronous code
-
-## React team plans to provide a helper method to enable specific current mode testing in libraries/frameworks.
-
----
-
-### react@16.x mid-2019
+<ReactVersion>react@16.x mid-2019</ReactVersion>
 
 # Suspense for data-fetching
 
@@ -433,9 +472,13 @@ Time Slicing
 
 ---
 
-realDuration = Math.min(maxDuration, currentDefaultDuration)
+## maxDuration?
 
-currentDefaultDuration depends on where setState is called. By default (e.g. in AJAX callback) it’s 5 seconds. Inside “intentional” events like click, it’s pretty short (I think 100ms in prod). And you can adjust it.
+### realDuration = Math.min(maxDuration, currentDefaultDuration)
+
+"currentDefaultDuration depends on where setState is called. By default (e.g. in AJAX callback) it’s 5 seconds. Inside “intentional” events like click, it’s pretty short (I think 100ms in prod). And you can adjust it."
+
+Dan Abramov
 
 ---
 
@@ -465,4 +508,21 @@ function Item(props){
 
 ---
 
-react-cache is a reference React Suspense cache implementation maintained by the React team.
+## react-cache
+
+<Appear showFirst alt>
+  <h3>
+    Reference React Suspense cache implementation maintained by the React team.
+  </h3>
+  <h3>still experimental.</h3>
+</Appear>
+
+---
+
+## The long term vision...
+
+- Replace componentDidMount, componentDidUpdate, and componentWillUnmount with Hooks
+- Every component import is dynamic
+- Make classes kinda obsolete
+- Pendulum swing back to SSR with Suspense
+- More framework-y with code splitting APIs (React.lazy)

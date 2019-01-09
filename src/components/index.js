@@ -32,10 +32,18 @@ export const FlexContainer = styled.div`
   display: flex;
   width: 50vw;
 `;
+
 export const FlexItem = styled.div`
   flex: 1 1 auto;
 `;
+
 export const Scroller = styled.div`
   overflow-y: scroll;
   height: 90vh;
+`;
+
+export const ReactVersion = styled.h2`
+  color: yellow;
+  margin: 0;
+  padding: 0;
 `;
