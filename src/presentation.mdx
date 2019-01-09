@@ -18,11 +18,23 @@ import "style.css";
 
 ---
 
+## The longer term vision...
+
+- Replace componentDidMount, componentDidUpdate, and componentWillUnmount with Hooks
+- Every component import is dynamic
+- Make classes kinda obsolete
+- Pendulum swing back to SSR with Suspense
+- More framework-y with code splitting APIs (React.lazy)
+
+---
+
 <Title2Left>User Experience</Title2Left>
 
 - React.lazy()
 - Suspense
 - Concurrent Mode
+
+---
 
 <Title2Left>Developer Experience</Title2Left>
 
@@ -87,8 +99,9 @@ import "style.css";
 # React Strict Mode
 
 ## Prepare your code for Concurrent Mode
-
 ---
+
+
 
 ```jsx
 import React from "react";
@@ -111,11 +124,20 @@ function ExampleApplication() {
 
 ---
 
+what it check for
+
+
+---
+
 ### react@16.5
 
 # Scheduler (experimental)
 
 ## Priority queue scheduling system for React
+
+---
+
+<Image size="50%" src="images/scheduler.png" />
 
 ---
 
@@ -304,16 +326,14 @@ function useWindowWidth() {
 
 ---
 
-## Long term goal with Hooks
-
-- Replace componentDidMount, componentDidUpdate, and componentWillUnmount with useEffect
-- make classes obsolete
-
----
-
 ### react@16.x Q2-2019
 
 # Concurrent Mode
+
+## Smooth high performance UX.
+---
+
+Thanks to the Fiber architecture, React renders parts of the tree while code and data for other parts is *still loading*, and then continue as they arrive.
 
 ---
 
@@ -322,6 +342,11 @@ function useWindowWidth() {
 
   <Image size="50%" src="images/scheduler_2.jpg" />
 </Appear>
+
+
+---
+
+Time Slicing
 
 ---
 
