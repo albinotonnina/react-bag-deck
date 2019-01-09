@@ -1,6 +1,13 @@
 export theme from "theme";
 import { Appear, Head, Notes, Image, Code } from "mdx-deck";
-import { AbsoluteDiv, RelativeDiv } from "./components";
+import {
+  AbsoluteDiv,
+  RelativeDiv,
+  Title2Left,
+  FlexItem,
+  FlexContainer,
+  Scroller
+} from "./components";
 import "style.css";
 
 <Head>
@@ -11,13 +18,13 @@ import "style.css";
 
 ---
 
-# User Experience
+<Title2Left>User Experience</Title2Left>
 
 - React.lazy()
 - Suspense
 - Concurrent Mode
 
-# Developer Experience
+<Title2Left>Developer Experience</Title2Left>
 
 - Context API
 - Strict Mode
@@ -26,7 +33,7 @@ import "style.css";
 
 ---
 
-### 16.3
+### react@16.3
 
 # Context API
 
@@ -75,7 +82,7 @@ import "style.css";
 
 ---
 
-### 16.3
+### react@16.3
 
 # React Strict Mode
 
@@ -104,7 +111,7 @@ function ExampleApplication() {
 
 ---
 
-### 16.5
+### react@16.5
 
 # Scheduler (experimental)
 
@@ -118,14 +125,12 @@ function ExampleApplication() {
     updates at different priorities. It's a bit difficult to explain all the
     nuances succinctly, but here's my attempt to squeeze this into two images:
   </p>
-  <Image size="50%" src="images/scheduler_1.jpg" />
-  <Image size="50%" src="images/scheduler_2.jpg" />
   <p>React team is working with Chrome team to standardize scheduling.</p>
 </Appear>
 
 ---
 
-### 16.5
+### react@16.5
 
 # Profiler
 
@@ -147,7 +152,7 @@ Basing the profiler on “commit” helps you focus on performance of React comp
 
 ---
 
-### 16.6
+### react@16.6
 
 # React.lazy()
 
@@ -204,7 +209,7 @@ function MyComponent() {
 
 ---
 
-### @next
+### react@next
 
 # Hooks
 
@@ -263,20 +268,30 @@ function useWindowWidth() {
 
 ---
 
-## Basic Hooks
+<FlexContainer>
+  <FlexItem>
+    <Title2Left>Basic Hooks</Title2Left>
+<ul>
+  <li className="left">useState</li>
+  <li className="left">useEffect</li>
+  <li className="left">useContext</li>
+</ul>
+  </FlexItem>
 
-- useState
-- useEffect
-- useContext
+  <FlexItem>
+  <Title2Left>Additional Hooks</Title2Left>
 
-## Additional Hooks
+<ul>
+<li className="left">useReducer</li>
+<li className="left">useCallback</li>
+<li className="left">useMemo</li>
+<li className="left">useRef</li>
+<li className="left">useImperativeMethods</li>
+<li className="left">useLayoutEffect</li>
+  </ul>
+  </FlexItem>
 
-- useReducer
-- useCallback
-- useMemo
-- useRef
-- useImperativeMethods
-- useLayoutEffect
+  </FlexContainer>
 
 ---
 
@@ -296,14 +311,133 @@ function useWindowWidth() {
 
 ---
 
-### 16.x Q2-2019
+### react@16.x Q2-2019
 
 # Concurrent Mode
 
 ---
 
-### 16.x mid-2019
+<Appear alt showFirst>
+  <Image size="50%" src="images/scheduler_1.jpg" />
+
+  <Image size="50%" src="images/scheduler_2.jpg" />
+</Appear>
+
+---
+
+# Concurrent mode is testable
+
+## You will be able to test just like a synchronous code
+
+## React team plans to provide a helper method to enable specific current mode testing in libraries/frameworks.
+
+---
+
+### react@16.x mid-2019
 
 # Suspense for data-fetching
 
+## Treat Asynchronous data as if it was synchronous/local data
+
 ---
+
+<Scroller>
+  <Code className="language-jsx">
+    {`
+    class Item extends React.Component {
+ 
+      constructor() {
+        super()
+        this.state = {data: null}
+      }
+ 
+      componentDidMount() {
+        this.getLatestData(this.props.id)
+      }
+ 
+      componentDidUpdate(prevProps) {
+        if(prevProps.id !== this.props.id) {
+          this.getLatestData(this.props.id)
+        }
+      }
+ 
+      async getLatestData(id) {
+        const review = await fetchAPI(
+          \`reviews/\${id}\`,
+        )
+        this.setState({data: review})
+      }
+ 
+      render() {
+        const data = this.state.data
+        if (data === null) {
+          return <Spinner />
+        }
+        return (
+          <div>
+            <quote>
+              <p>{data.content}</p>
+            </quote>
+          </div>
+        )
+      }
+ 
+    }`}
+
+  </Code>
+</Scroller>
+
+---
+
+<Scroller>
+  <Code className="language-jsx">
+    {`
+<div>
+  <Suspense maxDuration={1000} fallback={<Spinner size="medium" />}>
+    <section>
+      <div>
+        <Item id={someID} />
+      </div>
+    <section>
+  </Suspense>
+</div>
+    `}
+
+  </Code>
+</Scroller>
+
+---
+
+realDuration = Math.min(maxDuration, currentDefaultDuration)
+
+currentDefaultDuration depends on where setState is called. By default (e.g. in AJAX callback) it’s 5 seconds. Inside “intentional” events like click, it’s pretty short (I think 100ms in prod). And you can adjust it.
+
+---
+
+<Scroller>
+  <Code className="language-jsx">
+    {`import { createResource } from 'react-cache'
+ 
+const APIResource = createResource(path => fetchAPI(path))
+ 
+function Item(props){
+  
+  const data = APIResource.read(
+    \`/reviews/\${props.id}\`
+  )
+ 
+ return(
+  <div>
+    <quote>
+      <p>{data.content}</p>
+    </quote>
+  </div>
+ )
+}`}
+
+  </Code>
+</Scroller>
+
+---
+
+react-cache is a reference React Suspense cache implementation maintained by the React team.

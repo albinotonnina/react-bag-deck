@@ -7,6 +7,10 @@ h2 {
   color: white;
 }
 
+li.left {
+  text-align: left;
+}
+
 .initial {
   color: rgb(228, 179, 20);
 }
