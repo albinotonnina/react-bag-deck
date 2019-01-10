@@ -96,3 +96,27 @@ li.left {
     transform: rotate(360deg);
   }
 }
+
+.button{
+cursor: pointer;
+}
+
+.block {
+  display: block;
+  margin: 0 auto 5em;
+}
+
+.no-select {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -moz-user-drag: none;
+  -khtml-user-drag: none;
+  -webkit-user-drag: none;
+  -ms-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}

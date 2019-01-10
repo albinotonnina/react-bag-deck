@@ -1,5 +1,6 @@
 export theme from "theme";
 import { Appear, Head, Notes, Image, Code } from "mdx-deck";
+import Button from 'button'
 import {
   AbsoluteDiv,
   RelativeDiv,
@@ -12,12 +13,17 @@ import {
 import "style.css";
 
 <Head>
-  <title>--</title>
+  <title>Future React</title>
 </Head>
+
+
+<Button />
+
+---
 
 # Future React
 
-## Improving Experience
+### Improving Experience
 
 ---
 
@@ -44,7 +50,7 @@ import "style.css";
 
 # Context API
 
-## A way to pass data through the component tree
+### A way to pass data through the component tree
 
 ---
 
@@ -112,7 +118,7 @@ import "style.css";
 
 # React Strict Mode
 
-## Prepare your code for Concurrent Rendering
+### Prepare your code for Concurrent Rendering
 
 ---
 
@@ -165,7 +171,7 @@ function ExampleApplication() {
 
 # New Scheduler
 
-## Priority queue scheduling system for React
+### Priority queue scheduling system for React
 
 ---
 
@@ -193,7 +199,7 @@ function ExampleApplication() {
 
 # Profiler
 
-## A browser devtool for profiling duration of React component commit to the DOM.
+### A browser devtool for profiling duration of React component commit to the DOM.
 
 <Notes>
   
@@ -286,7 +292,7 @@ function MyComponent() {
 
 # Hooks
 
-## Extract non-render logic into smaller chunks and share them across function components.
+### Extract non-render logic into smaller chunks and share them across function components.
 
 ---
 
@@ -381,7 +387,7 @@ function useWindowWidth() {
 
 # Concurrent Mode
 
-## Smooth, high-performance UX.
+### Smooth, high-performance UX.
 
 ---
 
@@ -424,7 +430,7 @@ function useWindowWidth() {
 
 # Suspense for data-fetching
 
-## Treat Asynchronous data as if it was synchronous/local data
+### Treat Asynchronous data as if it was synchronous/local data
 
 ---
 
@@ -530,8 +536,9 @@ function Item(props){
 </Scroller>
 
 ---
+<ReactVersion>react@16.x mid-2019</ReactVersion>
 
-## react-cache
+# react-cache
 
 <Appear showFirst alt>
   <h3>
@@ -539,6 +546,27 @@ function Item(props){
   </h3>
   <h3>still experimental.</h3>
 </Appear>
+
+---
+<ReactVersion>react@16.x mid-2019</ReactVersion>
+
+# Speculative Rendering
+
+### let's kinda preload.
+
+---
+
+### React will automatically change the priority of the last 2 tabs subtrees so that they won’t be part of the initial render.
+
+```jsx
+<TabComponent>
+  <FirstTab />
+  <SecondTab hidden="true" />
+  <ThirdTab hidden="true" />
+</TabComponent>
+```
+
+The idea is to e.g have a tab component that can render out every window in advance so switching tabs is super fast.
 
 ---
 
